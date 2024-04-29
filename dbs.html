@@ -1,41 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>CT Viewer</title>
-<style>
-  /* Set the background of the entire page to black */
-  body {
-    background-color: black;
-    color: white; /* Sets text color to white for contrast */
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
-    display: flex; /* Use flexbox to arrange elements */
-    align-items: start; /* Align items to the top */
-    justify-content: flex-end; /* Right-align the content */
-    padding: 20px; /* Padding around the content */
-  }
+<html>
+	<title>DBS Targets</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://kit.fontawesome.com/e61b68c8d5.js" crossorigin="anonymous"></script>
+	<style>
+		body, h1,h2,h3,h4,h5,h6 {
+			font-family: "Montserrat", sans-serif
+		}
+		
+    iframe {
+      height: 466px;         /* Full width of the parent container */
+      width: 373px;
+      aspect-ratio: 1 / 1; /* Width to height ratio of 1:1 */
+      border: none;        /* Optional: Removes the default iframe border */
+    }
 
-  /* Styling for the iframe */
-  iframe {
-    width: 50vw; /* 50% of the viewport width */
-    height: 50vh; /* 50% of the viewport height */
-    border: none; /* No border around the iframe */
-  }
+		.w3-row-padding img {
+			margin-bottom: 12px;
+		}
 
-  /* Container for the text to align properly with the iframe */
-  .text-container {
-    margin-right: 20px; /* Space between the text and the iframe */
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center the text vertically relative to the iframe */
-    height: 50vh; /* Same height as the iframe for proper alignment */
-  }
-</style>
-</head>
-<body>
-  <div class="text-container">
-    <p>This is a CT</p>
-  </div>
-  <iframe src="http://localhost:1024/viewer.html?input=dicom%2F0000539%2FCT.zip" title="CT Viewer"></iframe>
+    .w3-row-padding {
+      padding: 0;
+    }
+
+    .w3-half.dwv-containing-div {
+      padding: 0;
+    }
+
+    .dwv-containing-div {
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically */
+    }
+		
+		/* Set the width of the sidebar to 120px */
+		.w3-sidebar {
+			width: 120px;
+			background: #222;
+		}
+		
+		/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+		#main {
+			margin-left: 120px
+		}
+		
+		/* Remove margins from "page content" on small screens */
+		@media only screen and (max-width: 600px) {
+			#main {
+				margin-left: 0
+			}
+		}
+	</style>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  // Add smooth scrolling to all links
+	  $("a").on('click', function(event) {
+
+		// Make sure this.hash has a value before overriding default behavior
+		if (this.hash !== "") {
+		  // Prevent default anchor click behavior
+		  event.preventDefault();
+
+		  // Store hash
+		  var hash = this.hash;
+
+		  // Using jQuery's animate() method to add smooth page scroll
+		  // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+		  $('html, body').animate({
+			scrollTop: $(hash).offset().top
+		  }, 800, function(){
+
+			// Add hash (#) to URL when done scrolling (default click behavior)
+			window.location.hash = hash;
+		  });
+		} // End if
+	  });
+	});
+
+  document.addEventListener('DOMContentLoaded', function() {
+      var vimct_legendText = encodeURIComponent("The Vim (yellow) and ZI (blue) with traversing DRTT (red).");
+      var vimct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + vimct_legendText;
+      document.getElementById('vimct').src = vimct_url;
+
+      var stnct_legendText = encodeURIComponent("The STN (red).");
+      var stnct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + stnct_legendText;
+      document.getElementById('stnct').src = stnct_url;      
+
+      var gpict_legendText = encodeURIComponent("The GPi (blue).");
+      var gpict_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + gpict_legendText;
+      document.getElementById('gpict').src = gpict_url;   
+
+      var cmnct_legendText = encodeURIComponent("The CMN (green).");
+      var cmnct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + cmnct_legendText;
+      document.getElementById('cmnct').src = cmnct_url;           
+
+      var antct_legendText = encodeURIComponent("The ANT (purple).");
+      var antct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + antct_legendText;
+      document.getElementById('antct').src = antct_url;  
+
+  });
+	</script>	
+	
+<body class="w3-black">
+
+	<!-- Icon Bar (Sidebar - hidden on small screens) -->
+	<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+	  <!-- Avatar image in top left corner -->
+	  <img src="resources/images/vim_example.jpg" style="width:100%">
+	  <a href="#vim" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-podcast w3-xxlarge" style="color: yellow;"></i> 
+		<p>Vim</p>
+	  </a>
+	  <a href="#stn" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fa fa-podcast w3-xxlarge" style="color: red;"></i>
+		<p>STN</p>
+	  </a>
+	  <a href="#gpi" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fas fa-podcast w3-xxlarge" style="color: blue;"></i>
+		<p>GPi</p>
+	  </a>
+	  <a href="#cmn" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fas fa-podcast w3-xxlarge" style="color: green;"></i>
+		<p>CMN</p>
+	  </a>
+	  <a href="#ant" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+		<i class="fas fa-podcast w3-xxlarge" style="color: purple;"></i>
+		<p>ANT</p>
+	  </a>
+	</nav>
+
+	<!-- Navbar on small screens (Hidden on medium and large screens) -->
+	<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+	  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+		<a href="#vim" class="w3-bar-item w3-button" style="width:25% !important">Vim</a>
+		<a href="#stn" class="w3-bar-item w3-button" style="width:25% !important">STN</a>
+		<a href="#gpi" class="w3-bar-item w3-button" style="width:25% !important">GPi</a>
+		<a href="#cmn" class="w3-bar-item w3-button" style="width:25% !important">CMN</a>
+		<a href="#ant" class="w3-bar-item w3-button" style="width:25% !important">ANT</a>
+	  </div>
+	</div>
+
+	<!-- Page Content -->
+	<div class="w3-padding-small" id="main">
+		<!-- Header/Home -->
+		<header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+			<h1 class="w3-jumbo">DBS Target Anatomy</h1>
+			<p>An interactive image-based tutorial</p>
+		</header>
+
+		<!-- Vim Section -->
+		<div class="w3-content w3-justify w3-text-light-grey w3-padding-64" id="vim">
+			<h2 class="w3-text-light-grey">Vim</h2>
+			<hr style="width:200px" class="w3-opacity">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<p>Note the ventralis intermediate nucleus (Vim) in yellow and zona incerta (ZI) in blue, with the dentatorubrothalamic tract (DRTT) in red traversing between them.</p>
+				</div>
+				<div class="w3-half dwv-containing-div">
+					<iframe id="vimct" src="" title="CT Viewer"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<!-- STN Section -->
+		<div class="w3-content w3-justify w3-text-light-grey w3-padding-64" id="stn">
+			<h2 class="w3-text-light-grey">STN</h2>
+			<hr style="width:200px" class="w3-opacity">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<p>TEXT HERE</p>
+				</div>
+				<div class="w3-half dwv-containing-div">
+					<iframe id="stnct" src="" title="CT Viewer"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<!-- GPI Section -->
+		<div class="w3-content w3-justify w3-text-light-grey w3-padding-64" id="gpi">
+			<h2 class="w3-text-light-grey">GPi</h2>
+			<hr style="width:200px" class="w3-opacity">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<p>TEXT HERE</p>
+				</div>
+				<div class="w3-half dwv-containing-div">
+					<iframe id="gpict" src="" title="CT Viewer"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<!-- CMN Section -->
+		<div class="w3-content w3-justify w3-text-light-grey w3-padding-64" id="cmn">
+			<h2 class="w3-text-light-grey">CMN</h2>
+			<hr style="width:200px" class="w3-opacity">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<p>TEXT HERE</p>
+				</div>
+				<div class="w3-half dwv-containing-div">
+					<iframe id="cmnct" src="" title="CT Viewer"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<!-- ANT Section -->
+		<div class="w3-content w3-justify w3-text-light-grey w3-padding-64" id="ant">
+			<h2 class="w3-text-light-grey">ANT</h2>
+			<hr style="width:200px" class="w3-opacity">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<p>TEXT HERE</p>
+				</div>
+				<div class="w3-half dwv-containing-div">
+					<iframe id="antct" src="" title="CT Viewer"></iframe>
+				</div>
+			</div>
+		</div>    
+
+	<!-- END PAGE CONTENT -->
+	</div>
+
 </body>
 </html>

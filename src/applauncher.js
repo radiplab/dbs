@@ -25,7 +25,7 @@ function startApp(uid, options) {
     tools: {
       Scroll: {},
       ZoomAndPan: {},
-      WindowLevel: {}/*, *** remove draw
+      WindowLevel: {}/*, **jc remove draw
       Draw: {
         options: ['Ruler']
       }*/
@@ -38,14 +38,14 @@ function startApp(uid, options) {
   // app gui
   var guiTools = Object.keys(appOptions.tools);
   var wlIndex = guiTools.indexOf('WindowLevel');
-  /*
+  /**jc
   if (wlIndex !== -1) {
     guiTools.splice(wlIndex + 1, 0, 'WindowLevelPresets');
   }
   */
   guiTools.push('Reset');
   guiTools.push('ToggleOrientation');
-  //guiTools.push('Fullscreen');
+  //**jcguiTools.push('Fullscreen');
   //guiTools.push('Tags');
   var dwvAppGui = new dwvsimple.Gui(dwvApp, guiTools, uid);
   dwvAppGui.init();

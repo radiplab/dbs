@@ -2,6 +2,7 @@
 <html>
 <!--
 Example URL: http://localhost:1024/viewer.html?input=dicom%2F0000539%2FCT.zip
+Example URL: http://localhost/viewer.html?input=dicom%2F0000539%2FCT.zip
 -->
 <head>
 <title>DICOM Web Viewer</title>
@@ -47,10 +48,48 @@ Example URL: http://localhost:1024/viewer.html?input=dicom%2F0000539%2FCT.zip
 <script type="text/javascript" src="src/register-sw.js"></script>
 <script type="text/javascript" src="src/appgui.js"></script>
 <script type="text/javascript" src="src/applauncher.js"></script>
+
+<script>
+// Prevent scrolling on touch devices
+document.addEventListener('touchmove', function(event) {
+  event.preventDefault();
+}, { passive: false });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to get the value of a specific query parameter
+    function getQueryParam(param) {
+        var queryString = window.location.search; // Get the full query string from the URL
+        var urlParams = new URLSearchParams(queryString); // Use URLSearchParams to handle the parameters
+        return urlParams.get(param); // Get the specific parameter
+    }
+
+    // Get the legend text from URL
+    var legendText = getQueryParam('legend'); // Get the 'legend' parameter
+
+    // Decode the legend text if it exists
+    if (legendText) {
+        legendText = decodeURIComponent(legendText);
+
+        // Find the div with ID 'legend' and set its content
+        var legendDiv = document.getElementById('legend');
+        if (legendDiv) {
+            legendDiv.textContent = legendText; // Set the text content of the div
+        }
+    }
+});
+
+</script>
+<style>
+html, body {
+  overflow: hidden; /* This prevents scrolling and hides the scrollbar */
+  height: 100%; /* This restricts the height to the viewport */
+}
+</style>
+
 </head>
 
 <body>
-
+<span id="dwvVersion" style="display: none;"></span>
 <!-- DWV -->
 <div id="dwv-simpl0" class="dwv">
 
@@ -62,9 +101,7 @@ Example URL: http://localhost:1024/viewer.html?input=dicom%2F0000539%2FCT.zip
     <div id="dropBox"></div>
   </div>
 
-  <div id="legend" class="legend"><p>Powered by <a
-    href="https://github.com/ivmartel/dwv"
-    title="dwv on github">dwv</a> <span id="dwvVersion"></span>.</p>
+  <div id="legend" class="legend">
   </div>
 
 </div><!-- /dwv -->

@@ -49,6 +49,8 @@ for (var i = 0; i < cases.length; i++) {
 </head>
 <body>
 
+<h2><a href="dbs.html">DBS</a>
+
 <?php
 
 echo "<h1>Displaying cases in " . getcwd() . "</h1><br/>";
