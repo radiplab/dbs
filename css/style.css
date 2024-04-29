@@ -1,3 +1,71 @@
+/* Layers */
+
+/**jc - center image */
+.layerContainer { 
+  position: absolute; padding: 0;
+  margin: auto; text-align: center; }
+
+.imageLayer { 
+  position: absolute;
+  left: 0px; }
+.drawDiv { position: absolute; pointer-events: none; }
+.dropBox { 
+  border: 5px dashed #ccc;
+  margin: 20px auto; }
+.dropBox.hover { border: 5px dashed #cc0; }
+
+.inline { display: inline-block !important; }
+
+.message {
+position: absolute;
+color: white;
+font-size: 2.0em;
+}
+
+/**jc - Display sequences */
+.sequencesContainer {
+font: 1.6em arial, sans-serif;
+text-align: left;
+z-index: 99;
+}
+
+#sequencesList {
+margin: 0px;
+}
+
+a.sequenceLink {
+  background-color: #6f6f6f;
+  color: white;
+  /*padding: 5px 10px;
+  margin: 5px;*/
+  padding: 4px;
+  margin: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+text-shadow: none;
+/* border-radius: 15px; */
+}
+
+a.sequenceLink:hover {
+  background-color: black;
+  color: white;
+}
+
+a.sequenceLinkActive {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+text-shadow: none;
+/*border-radius: 15px;*/
+}
+
+/** END JC */
+
 html,
 body {
   height: 100%;

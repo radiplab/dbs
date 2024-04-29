@@ -434,17 +434,19 @@ dwvsimple.Gui = function (app, tools, uid) {
 dwvsimple.Gui.prototype.updatePresets = function (presets) {
   var presetsId = this.getToolId('WindowLevelPresets');
   var domPresets = document.getElementById(presetsId);
-  // clear previous
-  while (domPresets.hasChildNodes()) {
-    domPresets.removeChild(domPresets.firstChild);
-  }
-  // add new
-  for (var i = 0; i < presets.length; ++i) {
-    var option = document.createElement('option');
-    option.value = presets[i];
-    var label = presets[i];
-    option.appendChild(document.createTextNode(label));
-    domPresets.appendChild(option);
+  if (domPresets !== null) {
+    // clear previous
+    while (domPresets.hasChildNodes()) {
+      domPresets.removeChild(domPresets.firstChild);
+    }
+    // add new
+    for (var i = 0; i < presets.length; ++i) {
+      var option = document.createElement('option');
+      option.value = presets[i];
+      var label = presets[i];
+      option.appendChild(document.createTextNode(label));
+      domPresets.appendChild(option);
+    }
   }
 };
 

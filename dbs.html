@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CT Viewer</title>
+<style>
+  /* Set the background of the entire page to black */
+  body {
+    background-color: black;
+    color: white; /* Sets text color to white for contrast */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox to arrange elements */
+    align-items: start; /* Align items to the top */
+    justify-content: flex-end; /* Right-align the content */
+    padding: 20px; /* Padding around the content */
+  }
+
+  /* Styling for the iframe */
+  iframe {
+    width: 50vw; /* 50% of the viewport width */
+    height: 50vh; /* 50% of the viewport height */
+    border: none; /* No border around the iframe */
+  }
+
+  /* Container for the text to align properly with the iframe */
+  .text-container {
+    margin-right: 20px; /* Space between the text and the iframe */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center the text vertically relative to the iframe */
+    height: 50vh; /* Same height as the iframe for proper alignment */
+  }
+</style>
+</head>
+<body>
+  <div class="text-container">
+    <p>This is a CT</p>
+  </div>
+  <iframe src="http://localhost:1024/viewer.html?input=dicom%2F0000539%2FCT.zip" title="CT Viewer"></iframe>
+</body>
+</html>
