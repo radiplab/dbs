@@ -275,7 +275,7 @@ dwvsimple.Gui = function (app, tools, uid) {
     // reset preset dropdown
     var presetsId = this.getToolId('WindowLevelPresets');
     var domPresets = document.getElementById(presetsId);
-    domPresets.selectedIndex = 0;
+    domPresets.selectedIndex = 0; 
   };
 
   /**

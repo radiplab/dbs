@@ -11,31 +11,31 @@
 		body, h1,h2,h3,h4,h5,h6 {
 			font-family: "Montserrat", sans-serif
 		}
-		
-    iframe {
-      height: 466px;         /* Full width of the parent container */
-      width: 373px;
-      aspect-ratio: 1 / 1; /* Width to height ratio of 1:1 */
-      border: none;        /* Optional: Removes the default iframe border */
-    }
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			aspect-ratio: 1 / 1.25; /* Width to height ratio of 1:1 */
+			border: none;        /* Optional: Removes the default iframe border */
+		}
 
 		.w3-row-padding img {
 			margin-bottom: 12px;
 		}
 
-    .w3-row-padding {
-      padding: 0;
-    }
+		.w3-row-padding {
+		padding: 0;
+		}
 
-    .w3-half.dwv-containing-div {
-      padding: 0;
-    }
+		.w3-half.dwv-containing-div {
+		padding: 0;
+		}
 
-    .dwv-containing-div {
-      display: flex;
-      justify-content: center; /* Center horizontally */
-      align-items: center;     /* Center vertically */
-    }
+		.dwv-containing-div {
+		display: flex;
+		justify-content: center; /* Center horizontally */
+		align-items: center;     /* Center vertically */
+		}
 		
 		/* Set the width of the sidebar to 120px */
 		.w3-sidebar {
@@ -83,28 +83,45 @@
 	  });
 	});
 
-  document.addEventListener('DOMContentLoaded', function() {
-      var vimct_legendText = encodeURIComponent("The Vim (yellow) and ZI (blue) with traversing DRTT (red).");
-      var vimct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + vimct_legendText;
-      document.getElementById('vimct').src = vimct_url;
+	document.addEventListener('DOMContentLoaded', function() {
+		var vimimgs_legendText = encodeURIComponent("The Vim (yellow) and ZI (blue) with traversing DRTT (red).");
+		var vimimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + vimimgs_legendText;
+		document.getElementById('vimimgs').src = vimimgs_url;
 
-      var stnct_legendText = encodeURIComponent("The STN (red).");
-      var stnct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + stnct_legendText;
-      document.getElementById('stnct').src = stnct_url;      
+		var stnimgs_legendText = encodeURIComponent("The STN (red).");
+		var stnimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + stnimgs_legendText;
+		document.getElementById('stnimgs').src = stnimgs_url;      
 
-      var gpict_legendText = encodeURIComponent("The GPi (blue).");
-      var gpict_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + gpict_legendText;
-      document.getElementById('gpict').src = gpict_url;   
+		var gpiimgs_legendText = encodeURIComponent("The GPi (blue).");
+		var gpiimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + gpiimgs_legendText;
+		document.getElementById('gpiimgs').src = gpiimgs_url;   
 
-      var cmnct_legendText = encodeURIComponent("The CMN (green).");
-      var cmnct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + cmnct_legendText;
-      document.getElementById('cmnct').src = cmnct_url;           
+		var cmnimgs_legendText = encodeURIComponent("The CMN (green).");
+		var cmnimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + cmnimgs_legendText;
+		document.getElementById('cmnimgs').src = cmnimgs_url;           
 
-      var antct_legendText = encodeURIComponent("The ANT (purple).");
-      var antct_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + antct_legendText;
-      document.getElementById('antct').src = antct_url;  
+		var antimgs_legendText = encodeURIComponent("The ANT (purple).");
+		var antimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + antimgs_legendText;
+		document.getElementById('antimgs').src = antimgs_url;  
 
-  });
+		// Prevent main page from scrolling when hovering over viewer
+		var iframes = document.querySelectorAll('iframe');
+		iframes.forEach(function(iframe) {
+		// Add an event listener to the iframe to capture scroll events
+		iframe.contentWindow.addEventListener('wheel', function(event) {
+			event.preventDefault();  // Prevents scrolling the parent
+			// Optionally, you can implement your own scroll logic here
+			// For instance, manually adjusting the scrollTop position based on the delta of the wheel event
+		}, { passive: false });  // This option is necessary to allow preventDefault to work
+
+		iframe.addEventListener('load', function() {
+			// This ensures the listener is added after the iframe content is fully loaded
+			this.contentWindow.addEventListener('wheel', function(event) {
+			event.preventDefault();
+			}, { passive: false });
+		});
+		});
+	});
 	</script>	
 	
 <body class="w3-black">
@@ -161,9 +178,15 @@
 			<div class="w3-row-padding">
 				<div class="w3-half">
 					<p>Note the ventralis intermediate nucleus (Vim) in yellow and zona incerta (ZI) in blue, with the dentatorubrothalamic tract (DRTT) in red traversing between them.</p>
+					<p>
+						<a href="#" onclick="document.getElementById('vimimgs').src='/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=Legend'; return false;">CT</a>		
+					</p>
+					<p>
+						<a href="#" onclick="document.getElementById('vimimgs').src='/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FT1.zip&legend=Legend'; return false;">T1</a>	
+					</p>
 				</div>
 				<div class="w3-half dwv-containing-div">
-					<iframe id="vimct" src="" title="CT Viewer"></iframe>
+					<iframe id="vimimgs" src="" title="CT Viewer"></iframe>
 				</div>
 			</div>
 		</div>
@@ -177,7 +200,7 @@
 					<p>TEXT HERE</p>
 				</div>
 				<div class="w3-half dwv-containing-div">
-					<iframe id="stnct" src="" title="CT Viewer"></iframe>
+					<iframe id="stnimgs" src="" title="CT Viewer"></iframe>
 				</div>
 			</div>
 		</div>
@@ -191,7 +214,7 @@
 					<p>TEXT HERE</p>
 				</div>
 				<div class="w3-half dwv-containing-div">
-					<iframe id="gpict" src="" title="CT Viewer"></iframe>
+					<iframe id="gpiimgs" src="" title="CT Viewer"></iframe>
 				</div>
 			</div>
 		</div>
@@ -205,7 +228,7 @@
 					<p>TEXT HERE</p>
 				</div>
 				<div class="w3-half dwv-containing-div">
-					<iframe id="cmnct" src="" title="CT Viewer"></iframe>
+					<iframe id="cmnimgs" src="" title="CT Viewer"></iframe>
 				</div>
 			</div>
 		</div>
@@ -219,7 +242,7 @@
 					<p>TEXT HERE</p>
 				</div>
 				<div class="w3-half dwv-containing-div">
-					<iframe id="antct" src="" title="CT Viewer"></iframe>
+					<iframe id="antimgs" src="" title="CT Viewer"></iframe>
 				</div>
 			</div>
 		</div>    

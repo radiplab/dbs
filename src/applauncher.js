@@ -25,7 +25,7 @@ function startApp(uid, options) {
     tools: {
       Scroll: {},
       ZoomAndPan: {},
-      WindowLevel: {}/*, **jc remove draw
+      WindowLevel: {}, /**jc remove draw and window-level (doesn't work for RGB overlays)
       Draw: {
         options: ['Ruler']
       }*/
@@ -101,8 +101,12 @@ function startApp(uid, options) {
         dwvAppGui.enableTool('Scroll', false);
       }
       if (!dwvApp.canWindowLevel()) {
-        dwvAppGui.enableTool('WindowLevel', false);
+        //dwvAppGui.enableTool('WindowLevel', false);
+        //jc - hide button instead of disabling it
+        var toolId = dwvAppGui.getToolId('WindowLevel');
+        document.getElementById(toolId).style.display = 'none';        
       }
+
       dwvApp.setTool(selectedTool);
       dwvAppGui.activateTool(selectedTool, true);
       // update presets
@@ -192,7 +196,7 @@ function startApp(uid, options) {
       viewController.getWindowLevelPresetsNames()
     );
     // suppose it is a manual change so switch preset to manual
-    dwvAppGui.setSelectedPreset('manual');
+    dwvAppGui.setSelectedPreset('manual'); 
   });
 
   // load from options.urls if defined
