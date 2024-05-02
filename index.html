@@ -85,23 +85,23 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 		var vimimgs_legendText = encodeURIComponent("The Vim (yellow) and ZI (blue) with traversing DRTT (red).");
-		var vimimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + vimimgs_legendText;
+		var vimimgs_url = "/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + vimimgs_legendText;
 		document.getElementById('vimimgs').src = vimimgs_url;
 
 		var stnimgs_legendText = encodeURIComponent("The STN (red).");
-		var stnimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + stnimgs_legendText;
+		var stnimgs_url = "/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + stnimgs_legendText;
 		document.getElementById('stnimgs').src = stnimgs_url;      
 
 		var gpiimgs_legendText = encodeURIComponent("The GPi (blue).");
-		var gpiimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + gpiimgs_legendText;
+		var gpiimgs_url = "/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + gpiimgs_legendText;
 		document.getElementById('gpiimgs').src = gpiimgs_url;   
 
 		var cmnimgs_legendText = encodeURIComponent("The CMN (green).");
-		var cmnimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + cmnimgs_legendText;
+		var cmnimgs_url = "/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + cmnimgs_legendText;
 		document.getElementById('cmnimgs').src = cmnimgs_url;           
 
 		var antimgs_legendText = encodeURIComponent("The ANT (purple).");
-		var antimgs_url = "/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + antimgs_legendText;
+		var antimgs_url = "/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=" + antimgs_legendText;
 		document.getElementById('antimgs').src = antimgs_url;  
 
 		// Prevent main page from scrolling when hovering over viewer
@@ -168,7 +168,7 @@
 		<!-- Header/Home -->
 		<header class="w3-container w3-padding-32 w3-center w3-black" id="home">
 			<h1 class="w3-jumbo">DBS Target Anatomy</h1>
-			<p>An interactive image-based tutorial</p>
+			<p>An interactive image-based tutorial test</p>
 		</header>
 
 		<!-- Vim Section -->
@@ -179,10 +179,10 @@
 				<div class="w3-half">
 					<p>Note the ventralis intermediate nucleus (Vim) in yellow and zona incerta (ZI) in blue, with the dentatorubrothalamic tract (DRTT) in red traversing between them.</p>
 					<p>
-						<a href="#" onclick="document.getElementById('vimimgs').src='/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=Legend'; return false;">CT</a>		
+						<a href="#" onclick="document.getElementById('vimimgs').src='/dbs/viewer.html?input=dicom%2F0000539%2FCT.zip&legend=Legend'; return false;">CT</a>		
 					</p>
 					<p>
-						<a href="#" onclick="document.getElementById('vimimgs').src='/dwv-simplistic/viewer.html?input=dicom%2F0000539%2FT1.zip&legend=Legend'; return false;">T1</a>	
+						<a href="#" onclick="document.getElementById('vimimgs').src='/dbs/viewer.html?input=dicom%2F0000539%2FT1.zip&legend=Legend'; return false;">T1</a>	
 					</p>
 				</div>
 				<div class="w3-half dwv-containing-div">

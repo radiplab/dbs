@@ -207,6 +207,13 @@ function startApp(uid, options) {
     // possible load from location
     dwvApp.loadFromUri(window.location.href);
   }
+
+  // Zoom **jc
+  layerGroupDiv = document.getElementById(dwvAppGui.getLayerGroupDivId());
+  var step = 1.2;
+  var cx = Math.round(layerGroupDiv.clientWidth / 2);
+  var cy = Math.round(layerGroupDiv.clientHeight / 2);
+  dwvApp.zoom(step, cx, cy);
 }
 
 // start when DOM is ready
