@@ -57,6 +57,19 @@
 				margin-left: 0
 			}
 		}
+
+		.intro-icon-container {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			margin-bottom: 20px;
+		}
+		.intro-icon-image {
+			width: 50px;
+			height: 50px;
+			margin-right: 20px;
+			font-size: 18px;
+		}		
 	</style>
 	
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
@@ -126,14 +139,21 @@
 		});
 
 		// Add intro text based on mobile or not
-		var introtext = document.getElementById('intro-text')
+		var introtext = document.getElementById('intro-text');
+		var introtext_content = '';
 		if ('ontouchstart' in window || navigator.maxTouchPoints) {
 			// Touch interface is present
-			introtext.innerText = 'Touch interface instructions';
+			introtext_content = "<div class='intro-icon-container'><img src='resources/images/scroll.png' alt='Scroll Icon' class='intro-icon-image'>Scroll with one finger</div>";
+			introtext_content += "<div class='intro-icon-container'><img src='resources/images/zoom.png' alt='Zoom Icon' class='intro-icon-image'>Zoom by pinching, pan with one finger</div>";
 		} else {
 			// No touch interface
-			introtext.innerText = 'Non-touch interface instructions'
-		}		
+			introtext_content = "<div class='intro-icon-container'><img src='resources/images/scroll.png' alt='Scroll Icon' class='intro-icon-image'>Scroll</div>";
+			introtext_content += "<div class='intro-icon-container'><img src='resources/images/zoom.png' alt='Zoom Icon' class='intro-icon-image'>Zoom by scrolling, pan with left-click</div>";
+		}
+		introtext_content += "<div class='intro-icon-container'><img src='resources/images/reset.png' alt='Reset Icon' class='intro-icon-image'>Reset view</div>";
+		introtext_content += "<div class='intro-icon-container'><img src='resources/images/orientation.png' alt='Orientation Icon' class='intro-icon-image'>Orientation change (axial / coronal / sagittal)</div>";
+		introtext_content += "<div class='intro-icon-container'><img src='resources/images/fullscreen.png' alt='Fullscreen Icon' class='intro-icon-image'>Fullscreen</div>";
+		introtext.innerHTML = introtext_content;
 
 		});
 	});
