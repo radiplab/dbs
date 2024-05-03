@@ -46,7 +46,7 @@ function startApp(uid, options) {
   guiTools.push('Reset');
   guiTools.push('ToggleOrientation');
   //**jcguiTools.push('Fullscreen');
-  //guiTools.push('Tags');
+  guiTools.push('Tags');
   var dwvAppGui = new dwvsimple.Gui(dwvApp, guiTools, uid);
   dwvAppGui.init();
   dwvAppGui.enableTools(false);
@@ -135,6 +135,20 @@ function startApp(uid, options) {
         viewController.setWindowLevelPreset(wlpreset.name);
         dwvAppGui.setSelectedPreset(options.wlpreset.name);
       }
+
+      // Zoom in a little **jc
+      var step = 0.4;
+      layerGroupDiv = document.getElementById(dwvAppGui.getLayerGroupDivId());
+      layerGroup = dwvApp.getLayerGroupByDivId(dwvAppGui.getLayerGroupDivId())
+      const viewLayer = layerGroup.getActiveViewLayer();
+      var x_index = layerGroupDiv.clientWidth / 2;
+      var y_index = layerGroupDiv.clientHeight / 2;
+      const planePos = viewLayer.displayToMainPlanePos(x_index, y_index);
+      const center = viewController.getPlanePositionFromPlanePoint(planePos);
+      layerGroup.addScale(step, center);
+      layerGroup.draw();
+
+      
     }
   });
   dwvApp.addEventListener('loaderror', function (event) {
@@ -208,12 +222,6 @@ function startApp(uid, options) {
     dwvApp.loadFromUri(window.location.href);
   }
 
-  // Zoom **jc
-  layerGroupDiv = document.getElementById(dwvAppGui.getLayerGroupDivId());
-  var step = 1.2;
-  var cx = Math.round(layerGroupDiv.clientWidth / 2);
-  var cy = Math.round(layerGroupDiv.clientHeight / 2);
-  dwvApp.zoom(step, cx, cy);
 }
 
 // start when DOM is ready
@@ -225,4 +233,5 @@ document.addEventListener('DOMContentLoaded', function (/*event*/) {
 
   // start
   startApp('simpl0');
+
 });

@@ -308,6 +308,20 @@ dwvsimple.Gui = function (app, tools, uid) {
     for (var i = 0; i < app.getNumberOfLoadedData(); ++i) {
       app.render(i);
     }
+
+    // Zoom in a little **jc
+    var step = 0.4;
+    layerGroupDiv = document.getElementById(this.getLayerGroupDivId());
+    layerGroup = app.getLayerGroupByDivId(this.getLayerGroupDivId())
+    const viewLayer = layerGroup.getActiveViewLayer();
+    const viewController = viewLayer.getViewController();
+    var x_index = layerGroupDiv.clientWidth / 2;
+    var y_index = layerGroupDiv.clientHeight / 2;
+    const planePos = viewLayer.displayToMainPlanePos(x_index, y_index);
+    const center = viewController.getPlanePositionFromPlanePoint(planePos);
+    layerGroup.addScale(step, center);
+    layerGroup.draw();
+
   };
 
   /**
