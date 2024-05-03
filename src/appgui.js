@@ -58,7 +58,8 @@ function getToolButton(toolName, appGui) {
     };
   } else if (toolName === 'Fullscreen') {
     button.onclick = function () {
-      appGui.toggleFullScreen();
+      //jc*appGui.toggleFullScreen();
+      window.open(window.location.href, "_blank");
     };
   } else if (toolName === 'Tags') {
     button.onclick = function () {

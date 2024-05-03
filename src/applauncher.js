@@ -45,8 +45,8 @@ function startApp(uid, options) {
   */
   guiTools.push('Reset');
   guiTools.push('ToggleOrientation');
-  //**jcguiTools.push('Fullscreen');
-  guiTools.push('Tags');
+  guiTools.push('Fullscreen');
+  //jc*guiTools.push('Tags');
   var dwvAppGui = new dwvsimple.Gui(dwvApp, guiTools, uid);
   dwvAppGui.init();
   dwvAppGui.enableTools(false);
@@ -84,6 +84,18 @@ function startApp(uid, options) {
   dwvApp.addEventListener('load', function (/*event*/) {
     // force hidding in case 100% progress was not sent
     dwvAppGui.setProgress(100);
+
+    //jc - start at middle image - have to wait until it's loaded fully
+    var num_images = dwvApp.getImage(0).getGeometry().getSize().get(2);
+    var middle_index = Math.round((num_images - 1) / 2);
+    var lg = dwvApp.getActiveLayerGroup();
+    var vl = lg.getActiveViewLayer();
+    var viewController = vl.getViewController();
+    const index = viewController.getCurrentIndex();
+    const values = index.getValues();
+    values[2] = middle_index;
+    viewController.setCurrentIndex(new dwv.Index(values));
+
   });
   dwvApp.addEventListener('loaditem', function (/*event*/) {
     ++nLoadItem;
@@ -146,9 +158,7 @@ function startApp(uid, options) {
       const planePos = viewLayer.displayToMainPlanePos(x_index, y_index);
       const center = viewController.getPlanePositionFromPlanePoint(planePos);
       layerGroup.addScale(step, center);
-      layerGroup.draw();
-
-      
+      layerGroup.draw();      
     }
   });
   dwvApp.addEventListener('loaderror', function (event) {
